@@ -19,3 +19,7 @@ yarn-error.log*
 .env
 .env.*
 !.env.example
+
+# local backups & helpers
+app.backup.*
+toggle
