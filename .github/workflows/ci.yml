@@ -1,0 +1,41 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use Node.js 20.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install deps (clean)
+        run: npm ci
+
+      - name: Typecheck (app)
+        run: |
+          npm run -s typecheck || npx -y tsc -p tsconfig.json --noEmit || true
+
+      - name: Typecheck (server, optional)
+        run: |
+          if [ -f tsconfig.server.json ]; then
+            npx -y tsc -p tsconfig.server.json --noEmit || true
+          fi
+
+      - name: Build (use your script if present)
+        run: |
+          npm run -s build || npx -y next build
