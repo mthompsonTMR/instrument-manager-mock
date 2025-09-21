@@ -1,0 +1,240 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI at http://jax-ws.dev.java.net. RI's version is Oracle JAX-WS 2.1.5. --><wsdl:definitions xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://lab2pt.pt.cap.org" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:cap="urn:cap-org:common" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ptdi="urn:cap-org:ptdi" xmlns:intf="http://lab2pt.pt.cap.org" targetNamespace="http://lab2pt.pt.cap.org">
+    <wsdl:types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ptdi="urn:cap-org:ptdi" elementFormDefault="qualified" targetNamespace="http://lab2pt.pt.cap.org">
+            <import namespace="urn:cap-org:ptdi" schemaLocation="http://access.cap.org:80/lab2pt/ResultsUpload?xsd=5"/>
+            <import namespace="urn:cap-org:common" schemaLocation="http://access.cap.org:80/lab2pt/ResultsUpload?xsd=1"/>
+            <element name="upload_resultsRequest">
+                <complexType>
+                    <sequence>
+                        <element name="results" type="ptdi:ptdiType"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="upload_resultsResponse">
+                <complexType>
+                    <sequence>
+                        <element name="status" type="xsd:int"/>
+                        <element name="fault" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+                        <element name="language" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+                        <element name="description" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="test_connRequest">
+                <complexType>
+                    <sequence>
+                        <element name="cap_num" type="cap:capNumType"/>
+                        <element name="client_id" type="xsd:string"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="test_connResponse">
+                <complexType>
+                    <sequence>
+                        <element name="status" type="xsd:int"/>
+                        <element name="fault" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+                        <element name="language" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+                        <element name="description" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="test_submissionRequest">
+              <complexType>
+                <sequence>
+                  <element name="results" type="ptdi:ptdiType"/>
+                </sequence>
+              </complexType>
+            </element>
+            <element name="test_submissionResponse">
+              <complexType>
+                <sequence>
+                  <element name="status" type="xsd:int"/>
+                  <element name="fault" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+                  <element name="language" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+                  <element name="description" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+                </sequence>
+              </complexType>
+            </element>
+            <element name="get_surveysRequest">
+              <complexType>
+                <sequence>
+                  <element name="myLabOnly" type="xsd:string"/>
+                  <element name="cap_num" type="xsd:string"/>
+                  <element name="client_id" type="xsd:string"/>
+                </sequence>
+              </complexType>
+            </element>
+            <element name="get_surveysResponse">
+              <complexType>
+                <sequence>
+                  <element name="status" type="xsd:int"/>
+                  <element name="fault" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+                  <element name="language" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+                  <element name="survey" type="ptdi:surveyType" minOccurs="0" maxOccurs="unbounded"/>
+                </sequence>
+              </complexType>
+            </element>
+            <element name="get_loinc_codesRequest">
+              <complexType>
+                <sequence>
+                  <element name="myLabOnly" type="xsd:string"/>
+                  <element name="cap_num" type="xsd:string"/>
+                  <element name="client_id" type="xsd:string"/>
+                  <element name="survey" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+                </sequence>
+              </complexType>
+            </element>
+            <element name="get_loinc_codesResponse">
+              <complexType>
+                <sequence>
+                  <element name="status" type="xsd:int"/>
+                  <element name="fault" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+                  <element name="language" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+                  <element name="loinc_code" type="ptdi:loincCodeType" minOccurs="0" maxOccurs="unbounded"/>
+                </sequence>
+              </complexType>
+            </element>
+		    </schema>
+    </wsdl:types>
+    <wsdl:message name="upload_resultsRequest">
+        <wsdl:part name="parameters" element="impl:upload_resultsRequest"/>
+    </wsdl:message>
+    <wsdl:message name="upload_resultsResponse">
+        <wsdl:part name="parameters" element="impl:upload_resultsResponse"/>
+    </wsdl:message>
+    <wsdl:message name="test_connRequest">
+        <wsdl:part name="parameters" element="impl:test_connRequest"/>
+    </wsdl:message>
+    <wsdl:message name="test_connResponse">
+        <wsdl:part name="parameters" element="impl:test_connResponse"/>
+    </wsdl:message>
+    <wsdl:message name="test_submissionResponse">
+      <wsdl:part name="parameters" element="impl:test_submissionResponse"/>
+    </wsdl:message>
+    <wsdl:message name="test_submissionRequest">
+      <wsdl:part name="parameters" element="impl:test_submissionRequest"/>
+    </wsdl:message>
+    
+    <wsdl:message name="get_surveysRequest">
+      <wsdl:part name="parameters" element="impl:get_surveysRequest"/>
+    </wsdl:message>
+    <wsdl:message name="get_surveysResponse">
+      <wsdl:part name="parameters" element="impl:get_surveysResponse"/>
+    </wsdl:message>
+    <wsdl:message name="get_loinc_codesRequest">
+      <wsdl:part name="parameters" element="impl:get_loinc_codesRequest"/>
+    </wsdl:message>
+    <wsdl:message name="get_loinc_codesResponse">
+      <wsdl:part name="parameters" element="impl:get_loinc_codesResponse"/>
+    </wsdl:message>
+	  
+    <wsdl:portType name="ResultsUpload">
+        <wsdl:operation name="upload_results">
+            <wsdl:input name="upload_resultsRequest" message="impl:upload_resultsRequest"/>
+            <wsdl:output name="upload_resultsResponse" message="impl:upload_resultsResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:portType name="TestConn">
+        <wsdl:operation name="test_conn">
+            <wsdl:input name="test_connRequest" message="impl:test_connRequest"/>
+            <wsdl:output name="test_connResponse" message="impl:test_connResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:portType name="TestSubmission">
+      <wsdl:operation name="test_submission">
+        <wsdl:input name="test_submissionRequest" message="impl:test_submissionRequest"/>
+        <wsdl:output name="test_submissionResponse" message="impl:test_submissionResponse"/>
+      </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:portType name="GetSurveys">
+      <wsdl:operation name="get_surveys">
+        <wsdl:input name="get_surveysRequest" message="impl:get_surveysRequest"/>
+        <wsdl:output name="get_surveysResponse" message="impl:get_surveysResponse"/>
+      </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:portType name="GetLoincCodes">
+      <wsdl:operation name="get_loinc_codes">
+        <wsdl:input name="get_loinc_codesRequest" message="impl:get_loinc_codesRequest"/>
+        <wsdl:output name="get_loinc_codesResponse" message="impl:get_loinc_codesResponse"/>
+      </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="TestConnSoapBinding" type="impl:TestConn">
+        <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="test_conn">
+            <wsdlsoap:operation soapAction=""/>
+            <wsdl:input name="test_connRequest">
+                <wsdlsoap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="test_connResponse">
+                <wsdlsoap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="ResultsUploadSoapBinding" type="impl:ResultsUpload">
+        <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="upload_results">
+            <wsdlsoap:operation soapAction=""/>
+            <wsdl:input name="upload_resultsRequest">
+                <wsdlsoap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="upload_resultsResponse">
+                <wsdlsoap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="TestSubmissionSoapBinding" type="impl:TestSubmission">
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+      <wsdl:operation name="test_submission">
+        <wsdlsoap:operation soapAction=""/>
+        <wsdl:input name="test_submissionRequest">
+          <wsdlsoap:body use="literal"/>
+        </wsdl:input>
+        <wsdl:output name="test_submissionResponse">
+          <wsdlsoap:body use="literal"/>
+        </wsdl:output>
+      </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="GetSurveysSoapBinding" type="impl:GetSurveys">
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+      <wsdl:operation name="get_surveys">
+        <wsdlsoap:operation soapAction=""/>
+        <wsdl:input name="get_surveysRequest">
+          <wsdlsoap:body use="literal"/>
+        </wsdl:input>
+        <wsdl:output name="get_surveysResponse">
+          <wsdlsoap:body use="literal"/>
+        </wsdl:output>
+      </wsdl:operation>
+    </wsdl:binding>
+
+    <wsdl:binding name="GetLoincCodesSoapBinding" type="impl:GetLoincCodes">
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+      <wsdl:operation name="get_loinc_codes">
+        <wsdlsoap:operation soapAction=""/>
+        <wsdl:input name="get_loinc_codesRequest">
+          <wsdlsoap:body use="literal"/>
+        </wsdl:input>
+        <wsdl:output name="get_loinc_codesResponse">
+          <wsdlsoap:body use="literal"/>
+        </wsdl:output>
+      </wsdl:operation>
+    </wsdl:binding>
+  
+    <wsdl:service name="LAB2PTService">
+        <wsdl:port name="ResultsUpload" binding="impl:ResultsUploadSoapBinding">
+			     <wsdlsoap:address location="http://access.cap.org:80/lab2pt/ResultsUpload"/>
+        </wsdl:port>
+        <wsdl:port name="TestConn" binding="impl:TestConnSoapBinding">
+			     <wsdlsoap:address location="http://access.cap.org:80/lab2pt/TestConn"/>
+        </wsdl:port>
+        <wsdl:port name="TestSubmission" binding="impl:TestSubmissionSoapBinding">
+           <wsdlsoap:address location="http://access.cap.org:80/lab2pt/TestSubmission"/>
+        </wsdl:port>
+        <wsdl:port name="GetSurveys" binding="impl:GetSurveysSoapBinding">
+          <wsdlsoap:address location="http://access.cap.org:80/lab2pt/GetSurveys"/>
+        </wsdl:port>
+        <wsdl:port name="GetLoincCodes" binding="impl:GetLoincCodesSoapBinding">
+          <wsdlsoap:address location="http://access.cap.org:80/lab2pt/GetLoincCodes"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
